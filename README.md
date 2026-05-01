@@ -1,4 +1,4 @@
-# Proyecto Java Maven
+# Proyecto Ejercicio Registro Aspirantes y CDT mejorado
 
 Proyecto desarrollado en Java usando Maven.
 

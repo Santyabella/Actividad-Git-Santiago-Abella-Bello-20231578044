@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<h:outputStylesheet name="css/styles.css"/>
+<title>Simulador CDT</title>
+</h:head>
+<h:body>
+	<h:form styleClass="form-container">
+		<h2>Datos del Aspirante</h2>
+		<h:outputLabel for="id_p" value="No. Identificación:" />
+		<h:inputText id="id_p" value="#{cdt.dto.id_p}" required="true" />
+
+		<br />
+		<br />
+		<h:outputLabel for="nombres" value="Nombres:" />
+		<h:inputText id="nombres" value="#{cdt.dto.nombres}" required="true" />
+
+		<br />
+		<br />
+		<h:outputLabel for="apellidos" value="Apellidos:" />
+		<h:inputText id="apellidos" value="#{cdt.dto.apellidos}"
+			required="true" />
+		<br />
+		<br />
+		<h:outputLabel for="telefono" value="Teléfono:" />
+		<h:inputText id="telefono" value="#{cdt.dto.telefono}" required="true" />
+		<br />
+		<br />
+		<h:outputLabel for="correo" value="Correo:" />
+		<h:inputText id="correo" value="#{cdt.dto.correo}" required="true" />
+		<br />
+		<br />
+		
+	<h2>Datos para el simulador</h2>
+	<h:outputLabel for="inversion" value="Inversión:" />
+         <h:inputText id="inversion" value="#{cdt.dto.inversion}" required="true" >
+            <f:convertNumber maxFractionDigits="2" />
+    </h:inputText>
+    <br/><br/>
+     <h:outputLabel for="interes" value="Interés (% E.A.):" />
+            <h:inputText id="interes" value="#{cdt.dto.interes}" required="true" />
+            <br/><br/>
+
+            <h:outputLabel for="plazo" value="Plazo (días):" />
+            <h:inputText id="plazo" value="#{cdt.dto.plazo}" required="true" />
+            <br/><br/>
+
+            
+       
+       
+            
+            <h:commandButton value="Registrar" action="#{cdt.registrar}">
+			<f:ajax execute="@form" render="@form" />
+		</h:commandButton>
+		<br />
+		<br />
+		
+		
+		
+		<h:panelGroup rendered="#{!cdt.listaCli.isEmpty()}">
+			<h3>Clientes registrados</h3>
+
+			<h:dataTable styleClass="tabla" value="#{cdt.listaCli}" var="cliente" border="1">
+				style="width:80%">
+
+				<h:column>
+					<f:facet name="header">N°.</f:facet>
+					<h:outputText value="#{cdt.listaCli.indexOf(cliente) + 1}" />
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Nombres </f:facet>
+					<h:outputText value="#{cliente.nombres}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Apellidos </f:facet>
+					<h:outputText value="#{cliente.apellidos}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Teléfono</f:facet>
+					<h:outputText value="#{cliente.telefono}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Correo </f:facet>
+					<h:outputText value="#{cliente.correo}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Valor Ganancia </f:facet>
+					<h:outputText value="#{cliente.ganancia}" >
+					<f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2" groupingUsed="true" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Valor final al vencimiento </f:facet>
+					<h:outputText value="#{cliente.valorFuturo - cliente.impuesto}" >
+					<f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2" groupingUsed="true" />
+					</h:outputText>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Valor impuesto 4% </f:facet>
+					<h:outputText value="#{cliente.impuesto}" >
+					<f:convertNumber type="currency" currencySymbol="$" maxFractionDigits="2" groupingUsed="true" />
+					</h:outputText>
+				</h:column>
+				
+
+			</h:dataTable>
+		</h:panelGroup>
+
+            
+	</h:form>
+	<footer>
+		<a href="index.xhtml">Inicio</a>
+		<br/><br/><br/><br/>
+		<h4>Est. Santiago Abella Bello  -  sabellab@distrital.edu.co  -  2026  -  Sistematizacion de datos</h4>
+	</footer>
+</h:body>
+</html>

@@ -49,13 +49,31 @@ public class AspiranteBean {
 	}
 
 	public void registrar() {
-		dto.setFecha_reg(LocalDate.now());
-		if (dto.getPro_acad().getCod() >= 0 && dto.getPro_acad().getCod() < listaPa.size()) {
-			dto.setPro_acad(listaPa.get(dto.getPro_acad().getCod()));
-		} else {
-			dto.setPro_acad(null);
-		}
-		listaAs.add(dto);
-		System.out.println("Se registro: " + dto.toString());
+	    dto.setFecha_reg(LocalDate.now());
+
+	    if (dto.getPro_acad().getCod() >= 0 && dto.getPro_acad().getCod() < listaPa.size()) {
+	        dto.setPro_acad(listaPa.get(dto.getPro_acad().getCod()));
+	    } else {
+	        dto.setPro_acad(null);
+	    }
+
+	    
+	    Aspirante nuevo = new Aspirante();
+	    
+	    nuevo.setNombres(dto.getNombres());
+	    nuevo.setApellidos(dto.getApellidos());
+	    nuevo.setTelefono(dto.getTelefono());
+	    nuevo.setCorreo(dto.getCorreo());
+	    nuevo.setFecha_reg(dto.getFecha_reg());
+	    nuevo.setPro_acad(dto.getPro_acad());
+	   
+
+	    listaAs.add(nuevo);
+
+	    System.out.println("Se registro: " + nuevo.toString());
+
+	    
+	    dto = new Aspirante();
+
 	}
 }
