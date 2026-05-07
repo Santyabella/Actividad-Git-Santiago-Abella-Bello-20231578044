@@ -3,8 +3,8 @@ package cdt.bean;
 
 import java.util.ArrayList;
 
-import asp.modelo.Cliente;
-import asp.modelo.ClienteDAO;
+import cdt.modelo.Cliente;
+import cdt.modelo.ClienteDAO;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 

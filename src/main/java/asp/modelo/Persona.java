@@ -2,12 +2,34 @@ package asp.modelo;
 
 import java.util.Objects;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
+
 public class Persona {
 
+	@NotNull(message = "El ID es obligatorio")
+	@Min(value = 1, message = "El ID debe ser mayor a 0")
 	private long id_p;
+	
+	@NotBlank(message = "El nombre es obligatorio")
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", message = "Los nombres solo deben contener letras")
 	private String nombres;
+	
+	@NotBlank(message = "El apellido es obligatorio")
+    @Pattern(regexp = "^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$", message = "Los apellidos solo deben contener letras")
 	private String apellidos;
+	
+	@NotBlank(message = "El teléfono es obligatorio")
+	@Pattern(regexp = "^\\d+$", message = "El teléfono debe tener solo números")
+	@Size(min = 7, max = 15, message = "El teléfono debe tener entre 7 y 15 dígitos")
 	private String telefono;
+	
+	@NotBlank(message = "El correo es obligatorio")
+    @Email(message = "Debe ingresar un correo electrónico válido")
 	private String correo;
 	
 	public Persona() {
